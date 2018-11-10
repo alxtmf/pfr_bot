@@ -25,6 +25,7 @@ class SheduleInfoManager {
                 TextSize: 'regular'
             };
             buttons.push(btn);
+            break;
         }
 
         const KS_INFO_KEYBOARD = {
