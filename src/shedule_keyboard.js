@@ -14,7 +14,7 @@ class SheduleInfoManager {
             ActionType:"reply",
             ActionBody: main_keyboard.MAIN_MENU,
             TextSize: 'regular',
-            Columns: 1
+            Columns: 3
         }];
 
         for (var index in list){
@@ -24,7 +24,7 @@ class SheduleInfoManager {
                 ActionType:"reply",
                 ActionBody: main_keyboard.KS_PREFIX + list[index].Organisation.Code,
                 TextSize: 'regular',
-                Columns: index % 2 === 0 ? 2 : 1
+                Columns: 3
             };
             buttons.push(btn);
             break;
