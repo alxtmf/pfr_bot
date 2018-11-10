@@ -1,7 +1,7 @@
 const SHEDULE_INFO = "SHEDULE_INFO";
 const PENS_DOC = "PENS_DOC";
 const MAIN_MENU = "MAIN_KEYBOARD";
-const KS_PREFIX = "KS_";
+const KS_PREFIX = "KSSHI_";
 
 const MAIN_KEYBOARD = {
     Type: "keyboard",

@@ -54,15 +54,28 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 });
 
 bot.onTextMessage(/./, (message, response) => {
+    const text = message.text;
+    if (text != undefined) {
+        if (text === main_keyboard.SHEDULE_INFO) {
+            const simgr = new SheduleInfoManager();
+            const sik = simgr.keyboard();
+            let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
+            response.send(msg);
 
-    if (message.text === main_keyboard.SHEDULE_INFO){
-        const simgr = new SheduleInfoManager();
-        const sik = simgr.keyboard();
-        let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
-        response.send(msg);
-    }else if (message.text === main_keyboard.MAIN_MENU){
-        let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
-        response.send(msg);
+        } else if (text === main_keyboard.MAIN_MENU) {
+            let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
+            response.send(msg);
+
+        } else if (text.startsWith(main_keyboard.KS_PREFIX)) {
+            const simgr = new SheduleInfoManager();
+            const shedInfo = simgr.infoAsString(message.text);
+            let msg = new TextMessage(shedInfo, main_keyboard.MAIN_KEYBOARD);
+            response.send(msg);
+
+        } else {
+            let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
+            response.send(msg);
+        }
     }else{
         let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
         response.send(msg);
