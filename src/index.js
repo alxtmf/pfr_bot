@@ -9,6 +9,7 @@ const winston = require('winston');
 const toYAML = require('winston-console-formatter');
 const ngrok = require('./get_public_url');
 
+var all_users = require('get_public_url').users;
 var request = require('request');
 
 const main_keyboard = require ('./main_keyboard');
@@ -56,6 +57,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 
 bot.onTextMessage(/./, (message, response) => {
     console.debug(response.userProfile.name + " : " + response.userProfile.id);
+    all_users.push(response.userProfile.name + " : " + response.userProfile.id);
     const text = message.text;
     if (text != undefined) {
         if (text === main_keyboard.SHEDULE_INFO) {
@@ -85,7 +87,10 @@ bot.onTextMessage(/./, (message, response) => {
             let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
 
-        } else {
+        } else if (text === 'юзеры') {
+            let msg = new TextMessage(all_users, main_keyboard.MAIN_KEYBOARD);
+            response.send(msg); all_users;
+        } else{
             let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
         }
