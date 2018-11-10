@@ -9,4 +9,12 @@ const sik = simgr.keyboard();
 //console.log(sik);
 
 const shedInfo = simgr.infoAsString('KSSHI_1');
-console.log(shedInfo);
+//console.log(shedInfo);
+
+const PensionDocInfoManager = require ('./src/pension_doc_keyboard');
+const pdmgr = new PensionDocInfoManager();
+const pdk = pdmgr.keyboard();
+console.log(pdk);
+
+const pdInfo = pdmgr.infoAsString('PENDO_1');
+console.log(pdInfo);

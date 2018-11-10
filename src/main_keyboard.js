@@ -2,6 +2,7 @@ const SHEDULE_INFO = "SHEDULE_INFO";
 const PENS_DOC = "PENS_DOC";
 const MAIN_MENU = "MAIN_KEYBOARD";
 const KS_PREFIX = "KSSHI_";
+const PENSION_DOC_PREFIX = "PENDO_";
 
 const MAIN_KEYBOARD = {
     Type: "keyboard",
@@ -31,3 +32,4 @@ module.exports.PENS_DOC = PENS_DOC;
 module.exports.MAIN_KEYBOARD = MAIN_KEYBOARD;
 module.exports.MAIN_MENU = MAIN_MENU;
 module.exports.KS_PREFIX = KS_PREFIX;
+module.exports.PENSION_DOC_PREFIX = PENSION_DOC_PREFIX;

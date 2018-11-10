@@ -13,6 +13,7 @@ var request = require('request');
 
 const main_keyboard = require ('./main_keyboard');
 const SheduleInfoManager = require ('./shedule_keyboard');
+const PensionDocInfoManager = require ('./pension_doc_keyboard');
 
 function createLogger() {
     const logger = new winston.Logger({
@@ -68,8 +69,13 @@ bot.onTextMessage(/./, (message, response) => {
 
         } else if (text.startsWith(main_keyboard.KS_PREFIX)) {
             const simgr = new SheduleInfoManager();
-            const shedInfo = simgr.infoAsString(message.text);
+            const shedInfo = simgr.infoAsString(text);
             let msg = new TextMessage(shedInfo, main_keyboard.MAIN_KEYBOARD);
+            response.send(msg);
+        }else if (text.startsWith(main_keyboard.PENSION_DOC_PREFIX)) {
+            const pdmgr = new PensionDocInfoManager();
+            const pdInfo = pdmgr.infoAsString(text);
+            let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
 
         } else {
