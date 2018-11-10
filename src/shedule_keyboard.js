@@ -1,7 +1,7 @@
 
 
 const shedule_info = require ('./shedule_info');
-const main_keyboard = require ('./src/main_keyboard');
+const main_keyboard = require ('./main_keyboard');
 
 class SheduleInfoManager {
 
