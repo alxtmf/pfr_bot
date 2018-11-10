@@ -90,7 +90,7 @@ bot.onTextMessage(/./, (message, response) => {
         } else if (text === 'юзеры') {
             var txt = '';
             for (var u in all_users) {
-                txt += u + '\n';
+                txt += all_users[u] + '\n';
             }
             let msg = new TextMessage(txt, main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
