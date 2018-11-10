@@ -11,8 +11,8 @@ const ngrok = require('./get_public_url');
 
 var request = require('request');
 
-const main_keyboard = require ('./src/main_keyboard');
-const SheduleInfoManager = require ('./src/shedule_keyboard');
+const main_keyboard = require ('./main_keyboard');
+const SheduleInfoManager = require ('./shedule_keyboard');
 
 function createLogger() {
     const logger = new winston.Logger({
