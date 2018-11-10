@@ -40,7 +40,7 @@ if (!process.env.VIBER_PUBLIC_ACCOUNT_ACCESS_TOKEN_KEY) {
 const bot = new ViberBot(logger, {
     authToken: process.env.VIBER_PUBLIC_ACCOUNT_ACCESS_TOKEN_KEY, // Learn how to get your access token at developers.viber.com
     name: "Бот ПФР",
-    avatar: 'https://share.cdn.viber.com/pg_download?id=0-04-01-a0cd56f78a6325de694a2e5817b1172ff6c0416faf3e7ebef783eac7a51afa6a&filetype=jpg&type=icon';
+    avatar: 'https://share.cdn.viber.com/pg_download?id=0-04-01-a0cd56f78a6325de694a2e5817b1172ff6c0416faf3e7ebef783eac7a51afa6a&filetype=jpg&type=icon'
         //"https://raw.githubusercontent.com/devrelv/drop/master/151-icon.png" // Just a placeholder avatar to display the user
 });
 
