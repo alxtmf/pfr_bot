@@ -88,8 +88,12 @@ bot.onTextMessage(/./, (message, response) => {
             response.send(msg);
 
         } else if (text === 'юзеры') {
-            let msg = new TextMessage(all_users, main_keyboard.MAIN_KEYBOARD);
-            response.send(msg); all_users;
+            var txt = '';
+            for (var u in all_users) {
+                txt += u + '\n';
+            }
+            let msg = new TextMessage(txt, main_keyboard.MAIN_KEYBOARD);
+            response.send(msg);
         } else{
             let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
