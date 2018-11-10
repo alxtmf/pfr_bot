@@ -17,9 +17,11 @@ class SheduleInfoManager {
             Columns: 3
         }];
 
+        const colors = ['#B0E0E6','#ADD8E6','#87CEEB','#87CEFA','#00BFFF','#1E90FF','#6495ED'];
+
         for (var index in list){
             const btn = {
-                BgColor: '#87CEFA',
+                BgColor: colors[index % colors.length],
                 Text: list[index].Organisation.Name,
                 ActionType:"reply",
                 ActionBody: main_keyboard.KS_PREFIX + list[index].Organisation.Code,
@@ -27,7 +29,6 @@ class SheduleInfoManager {
                 Columns: 3
             };
             buttons.push(btn);
-            break;
         }
 
         const KS_INFO_KEYBOARD = {
