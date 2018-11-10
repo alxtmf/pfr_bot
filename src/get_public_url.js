@@ -33,4 +33,4 @@ module.exports.getPublicUrl = function() {
     });
 }
 
-module.exports.users = [];
+module.exports.users = new Set();
