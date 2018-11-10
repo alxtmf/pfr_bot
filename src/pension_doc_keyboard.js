@@ -24,7 +24,7 @@ class PensionDocInfoManager {
         const pdInfo = this.info(actionBoby);
         var result = '';
         if (pdInfo != undefined){
-            result += pdInfo.Name+ '\n' + pdInfo.Message;
+            result += pdInfo.Name+ ':\n' + pdInfo.Message;
         }else{
             result = 'Информация отсутсвует';
         }
