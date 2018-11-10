@@ -55,7 +55,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 });
 
 bot.onTextMessage(/./, (message, response) => {
-    console.info(response.userProfile.name + " : " + response.userProfile.id);
+    console.debug(response.userProfile.name + " : " + response.userProfile.id);
     const text = message.text;
     if (text != undefined) {
         if (text === main_keyboard.SHEDULE_INFO) {
