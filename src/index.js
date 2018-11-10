@@ -63,7 +63,13 @@ bot.onTextMessage(/./, (message, response) => {
             let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
             response.send(msg);
 
-        } else if (text === main_keyboard.MAIN_MENU) {
+        } else if (text === main_keyboard.PENS_DOC) {
+            const pdmgr = new PensionDocInfoManager();
+            const pdk = pdmgr.keyboard();
+            let msg = new TextMessage("Узнайте, какие документы необходмы в различных жизненных ситуациях", pdk);
+            response.send(msg);
+
+        }else if (text === main_keyboard.MAIN_MENU) {
             let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
 
