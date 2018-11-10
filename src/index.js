@@ -9,7 +9,7 @@ const winston = require('winston');
 const toYAML = require('winston-console-formatter');
 const ngrok = require('./get_public_url');
 
-var all_users = require('get_public_url').users;
+var all_users = ngrok.users;
 var request = require('request');
 
 const main_keyboard = require ('./main_keyboard');
