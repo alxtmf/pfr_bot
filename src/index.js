@@ -60,6 +60,9 @@ bot.onTextMessage(/./, (message, response) => {
         const sik = simgr.keyboard();
         let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
         response.send(msg);
+    }else if (message.text === main_keyboard.MAIN_MENU){
+        let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
+        response.send(msg);
     }else{
         let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
         response.send(msg);

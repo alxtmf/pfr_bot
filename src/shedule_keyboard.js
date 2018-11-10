@@ -13,7 +13,8 @@ class SheduleInfoManager {
             Text: 'Главное меню',
             ActionType:"reply",
             ActionBody: main_keyboard.MAIN_MENU,
-            TextSize: 'regular'
+            TextSize: 'regular',
+            Columns: 1
         }];
 
         for (var index in list){
@@ -22,7 +23,8 @@ class SheduleInfoManager {
                 Text: list[index].Organisation.Name,
                 ActionType:"reply",
                 ActionBody: main_keyboard.KS_PREFIX + list[index].Organisation.Code,
-                TextSize: 'regular'
+                TextSize: 'regular',
+                Columns: index % 2 === 0 ? 2 : 1
             };
             buttons.push(btn);
             break;
@@ -33,6 +35,7 @@ class SheduleInfoManager {
             Revision: 1,
             DefaultHeight: true,
             BgColor: '#F0FFFF',
+            ButtonsGroupColumns: 2,
             Buttons: buttons
         };
         return KS_INFO_KEYBOARD;
