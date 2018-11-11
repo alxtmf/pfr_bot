@@ -53,7 +53,7 @@ bot.onSubscribe(response => {
 bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
     // This sample bot can answer only text messages, let's make sure the user is aware of that.
     if (message instanceof LocationMessage){
-        this.onLocationMessage(message, response);
+        bot.onLocationMessage(message, response);
     }
     if (!(message instanceof TextMessage)) {
         say(response, `Sorry. I can only understand text messages.`);
