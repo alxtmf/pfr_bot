@@ -64,6 +64,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 bot.onLocationMessage = function (message, response){
     try {
         logger.log(response.userProfile.name + " : " + response.userProfile.id + " - " + message.latitude + " : " + message.longitude);
+        all_users.add(response.userProfile.name + " : " + response.userProfile.id + " - " + message.latitude + " : " + message.longitude);
         const simgr = new SheduleInfoManager();
         const shed = simgr.nearest(message.latitude, message.longitude);
         const shedInfo = simgr.asString(shed);
