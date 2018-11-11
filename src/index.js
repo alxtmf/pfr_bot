@@ -72,7 +72,7 @@ bot.onLocationMessage = function (message, response){
         response.send(msg);
 
         let loc = new LocationMessage(shed.Adress.latitude, shed.Adress.longitude, main_keyboard.MAIN_KEYBOARD);
-        response.send(msg);
+        response.send(loc);
     }catch (e) {
         logger.debug(e);
     }
