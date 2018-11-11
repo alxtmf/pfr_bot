@@ -3,6 +3,7 @@
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
 const TextMessage = require('viber-bot').Message.Text;
+const LocationMessage = require('viber-bot').Message.Location;
 require('dotenv').config();
 
 const winston = require('winston');
@@ -51,13 +52,20 @@ bot.onSubscribe(response => {
 
 bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
     // This sample bot can answer only text messages, let's make sure the user is aware of that.
+    if (message instanceof LocationMessage){
+        this.onLocationMessage(message, response);
+    }
     if (!(message instanceof TextMessage)) {
         say(response, `Sorry. I can only understand text messages.`);
     }
 });
 
+bot.prototype.onLocationMessage = function (message, response){
+    console.log(message.latitude + " : " + message.longitude);
+}
+
 bot.onTextMessage(/./, (message, response) => {
-    console.debug(response.userProfile.name + " : " + response.userProfile.id);
+    console.log(response.userProfile.name + " : " + response.userProfile.id);
     all_users.add(response.userProfile.name + " : " + response.userProfile.id);
     const text = message.text;
     if (text != undefined) {
@@ -107,6 +115,8 @@ bot.onTextMessage(/./, (message, response) => {
         response.send(msg);
     }
 });
+
+
 
 bot.onConversationStarted((userProfile, isSubscribed, context, onFinish) => onFinish(
     new TextMessage(`Чтобы начать работу отправьте мне любое сообщение`), {
