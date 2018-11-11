@@ -60,7 +60,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
     }
 });
 
-bot.prototype.onLocationMessage = function (message, response){
+ViberBot.prototype.onLocationMessage = function (message, response){
     console.log(message.latitude + " : " + message.longitude);
 }
 
