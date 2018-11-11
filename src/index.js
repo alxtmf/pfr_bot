@@ -54,65 +54,83 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
     // This sample bot can answer only text messages, let's make sure the user is aware of that.
     if (message instanceof LocationMessage){
         bot.onLocationMessage(message, response);
-    }
-    if (!(message instanceof TextMessage)) {
-        say(response, `Sorry. I can only understand text messages.`);
+    }else {
+        if (!(message instanceof TextMessage)) {
+            say(response, `Sorry. I can only understand text messages.`);
+        }
     }
 });
 
 bot.onLocationMessage = function (message, response){
-    console.log(message.latitude + " : " + message.longitude);
+    try {
+        logger.log(response.userProfile.name + " : " + response.userProfile.id + " - " + message.latitude + " : " + message.longitude);
+        const simgr = new SheduleInfoManager();
+        const shed = simgr.nearest(message.latitude, message.longitude);
+        const shedInfo = simgr.asString(shed);
+        let msg = new TextMessage('Ближайшая к вам клиентская служба: \n'+ shedInfo, main_keyboard.MAIN_KEYBOARD);
+        response.send(msg);
+
+        let loc = new LocationMessage(shed.Adress.latitude, shed.Adress.longitude, main_keyboard.MAIN_KEYBOARD);
+        response.send(msg);
+    }catch (e) {
+        logger.debug(e);
+    }
 }
 
 bot.onTextMessage(/./, (message, response) => {
-    console.log(response.userProfile.name + " : " + response.userProfile.id);
-    all_users.add(response.userProfile.name + " : " + response.userProfile.id);
-    const text = message.text;
-    if (text != undefined) {
-        if (text === main_keyboard.SHEDULE_INFO) {
-            const simgr = new SheduleInfoManager();
-            const sik = simgr.keyboard();
-            let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
-            response.send(msg);
+    try {
+        logger.log(response.userProfile.name + " : " + response.userProfile.id);
+        all_users.add(response.userProfile.name + " : " + response.userProfile.id);
+        const text = message.text;
+        if (text != undefined) {
+            if (text === main_keyboard.SHEDULE_INFO) {
+                const simgr = new SheduleInfoManager();
+                const sik = simgr.keyboard();
+                let msg = new TextMessage("Узнайте адрес, время работы и контакты клиентской службы", sik);
+                response.send(msg);
 
-        } else if (text === main_keyboard.PENS_DOC) {
-            const pdmgr = new PensionDocInfoManager();
-            const pdk = pdmgr.keyboard();
-            let msg = new TextMessage("Узнайте, какие документы необходмы в различных жизненных ситуациях", pdk);
-            response.send(msg);
+            } else if (text === main_keyboard.PENS_DOC) {
+                const pdmgr = new PensionDocInfoManager();
+                const pdk = pdmgr.keyboard();
+                let msg = new TextMessage("Узнайте, какие документы необходмы в различных жизненных ситуациях", pdk);
+                response.send(msg);
+            }else if (text === main_keyboard.NEAREST_KS) {
+                    let msg = new TextMessage("Отправьте мне ваше местоположение и я покажу на карте ближайшую клиентскую службу");
+                    response.send(msg);
 
-        }else if (text === main_keyboard.MAIN_MENU) {
-            let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
-            response.send(msg);
+            }else if (text === main_keyboard.MAIN_MENU) {
+                let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
 
-        } else if (text.startsWith(main_keyboard.KS_PREFIX)) {
-            const simgr = new SheduleInfoManager();
-            const shedInfo = simgr.infoAsString(text);
-            let msg = new TextMessage(shedInfo, main_keyboard.MAIN_KEYBOARD);
-            response.send(msg);
-        }else if (text.startsWith(main_keyboard.PENSION_DOC_PREFIX)) {
-            const pdmgr = new PensionDocInfoManager();
-            const pdInfo = pdmgr.infoAsString(text);
-            let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
-            response.send(msg);
+            } else if (text.startsWith(main_keyboard.KS_PREFIX)) {
+                const simgr = new SheduleInfoManager();
+                const shedInfo = simgr.infoAsString(text);
+                let msg = new TextMessage(shedInfo, main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
 
-        } else if (text === 'юзеры') {
-            var txt = '';
-            all_users.forEach(function (value) {
-                txt += value + '\n';
-            });
-            // for (var u in all_users) {
-            //     txt += all_users[u] + '\n';
-            // }
-            let msg = new TextMessage(txt, main_keyboard.MAIN_KEYBOARD);
-            response.send(msg);
-        } else{
+            }else if (text.startsWith(main_keyboard.PENSION_DOC_PREFIX)) {
+                const pdmgr = new PensionDocInfoManager();
+                const pdInfo = pdmgr.infoAsString(text);
+                let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
+
+            } else if (text === 'юзеры') {
+                var txt = '';
+                all_users.forEach(function (value) {
+                    txt += value + '\n';
+                });
+                let msg = new TextMessage(txt, main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
+            } else{
+                let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
+            }
+        }else{
             let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
             response.send(msg);
         }
-    }else{
-        let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
-        response.send(msg);
+    }catch (e) {
+        logger.debug(e);
     }
 });
 

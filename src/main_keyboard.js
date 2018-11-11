@@ -3,6 +3,7 @@ const PENS_DOC = "PENS_DOC";
 const MAIN_MENU = "MAIN_KEYBOARD";
 const KS_PREFIX = "KSSHI_";
 const PENSION_DOC_PREFIX = "PENDO_";
+const NEAREST_KS = "NEAREST_KS";
 
 const MAIN_KEYBOARD = {
     Type: "keyboard",
@@ -19,6 +20,13 @@ const MAIN_KEYBOARD = {
         },
         {
             BgColor: '#48D1CC',
+            Text: 'Ближайшая клиентская служба',
+            ActionType:"reply",
+            ActionBody: NEAREST_KS,
+            TextSize: 'regular'
+        },
+        {
+            BgColor: '#00CED1',
             Text: 'Документы',
             ActionType:"reply",
             ActionBody: PENS_DOC,
@@ -33,3 +41,4 @@ module.exports.MAIN_KEYBOARD = MAIN_KEYBOARD;
 module.exports.MAIN_MENU = MAIN_MENU;
 module.exports.KS_PREFIX = KS_PREFIX;
 module.exports.PENSION_DOC_PREFIX = PENSION_DOC_PREFIX;
+module.exports.NEAREST_KS = NEAREST_KS;

@@ -9,7 +9,9 @@ const sik = simgr.keyboard();
 //console.log(sik);
 
 const shedInfo = simgr.infoAsString('KSSHI_1');
-//console.log(shedInfo);
+//51.8325397 : 107.5870927
+const si2 = simgr.nearest(51.8325397, 107.5870927);
+console.log(simgr.asString(si2));
 
 const PensionDocInfoManager = require ('./src/pension_doc_keyboard');
 const pdmgr = new PensionDocInfoManager();

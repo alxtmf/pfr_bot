@@ -22,22 +22,84 @@ class SheduleInfoManager {
 
     infoAsString (actionBoby){
         const shedInfo = this.info(actionBoby);
-        var result = '';
-        if (shedInfo != undefined){
-            result += shedInfo.Organisation.FullName + '\n'
-                + "Адрес: " + shedInfo.Adress.AddressNonStructured + '\n'
-                + "Телефон: " + shedInfo.Phone + '\n';
-            var shed = '';
-            for (var index in shedInfo.ScheduleList.Schedule){
-                const elem = shedInfo.ScheduleList.Schedule[index];
-                shed += elem.DayOfWeek + ": c " + elem.BeginTime + " до " + elem.EndTime
-                    + " обед c " + elem.BeginDinner + " до " + elem.EndDinner + '\n'
-            }
-            result += shed;
-        }else{
-            result = 'Информация отсутсвует';
-        }
+        var result = this.asString(shedInfo);//'';
+        // if (shedInfo != undefined){
+        //     result += shedInfo.Organisation.FullName + '\n'
+        //         + "Адрес: " + shedInfo.Adress.AddressNonStructured + '\n'
+        //         + "Телефон: " + shedInfo.Phone + '\n';
+        //     var shed = '';
+        //     for (var index in shedInfo.ScheduleList.Schedule){
+        //         const elem = shedInfo.ScheduleList.Schedule[index];
+        //         shed += elem.DayOfWeek + ": c " + elem.BeginTime + " до " + elem.EndTime
+        //             + " обед c " + elem.BeginDinner + " до " + elem.EndDinner + '\n'
+        //     }
+        //     result += shed;
+        // }else{
+        //     result = 'Информация отсутсвует';
+        // }
         return result;
+    }
+
+    asString(shedInfo) {
+        let f =  function() {
+            var result = '';
+            if (shedInfo != undefined){
+                result += shedInfo.Organisation.FullName + '\n'
+                    + "Адрес: " + shedInfo.Adress.AddressNonStructured + '\n'
+                    + "Телефон: " + shedInfo.Phone + '\n';
+                var shed = '';
+                for (var index in shedInfo.ScheduleList.Schedule){
+                    const elem = shedInfo.ScheduleList.Schedule[index];
+                    shed += elem.DayOfWeek + ": c " + elem.BeginTime + " до " + elem.EndTime
+                        + " обед c " + elem.BeginDinner + " до " + elem.EndDinner + '\n'
+                }
+                result += shed;
+            }else{
+                result = 'Информация отсутсвует';
+            }
+            return result;
+        }.bind();
+        return f(shedInfo);
+    }
+
+    nearest (latitude, longitude){
+        const self = this;
+        const list = shedule_info.sheduleInfo.ScheduleInfoList.ScheduleInfo;
+        const nearestAdr = list.map( function (lm){
+            return {
+                sheduleInfo: lm,
+                distance: self.distance(latitude, longitude, lm.Adress.latitude, lm.Adress.longitude)
+            }
+        }).reduce(function (lmd1, lmd2){
+            return (lmd1.distance < lmd2.distance ? lmd1 : lmd2);
+        });
+        return nearestAdr.sheduleInfo;
+    }
+
+    distance(latitude1, longitude1, latitude2, longitude2){
+        const self = this;
+        let f =  function() {
+            var R = 6371; // Radius of the earth in km
+            var dLat = self.deg2rad(latitude2-latitude1);  // deg2rad below
+            var dLon = self.deg2rad(longitude2-longitude1);
+            //Гаверсинус
+            var a =
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(self.deg2rad(latitude1)) * Math.cos(self.deg2rad(latitude2)) *
+                Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c; // Distance in km
+            return d;
+        }.bind();
+        return f(latitude1, longitude1, latitude2, longitude2);
+    }
+
+    deg2rad(deg) {
+        let f =  function() {
+            return deg * (Math.PI/180)
+        }.bind();
+        return f(deg);
     }
 
     keyboard(){
