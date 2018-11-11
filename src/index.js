@@ -38,7 +38,7 @@ if (!process.env.VIBER_PUBLIC_ACCOUNT_ACCESS_TOKEN_KEY) {
 }
 
 // Creating the bot with access token, name and avatar
-const bot = new ViberBot(logger, {
+var bot = new ViberBot(logger, {
     authToken: process.env.VIBER_PUBLIC_ACCOUNT_ACCESS_TOKEN_KEY, // Learn how to get your access token at developers.viber.com
     name: "Бот ПФР",
     avatar: 'https://share.cdn.viber.com/pg_download?id=0-04-01-a0cd56f78a6325de694a2e5817b1172ff6c0416faf3e7ebef783eac7a51afa6a&filetype=jpg&type=icon'
@@ -60,7 +60,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
     }
 });
 
-ViberBot.prototype.onLocationMessage = function (message, response){
+bot.prototype.onLocationMessage = function (message, response){
     console.log(message.latitude + " : " + message.longitude);
 }
 
