@@ -104,7 +104,6 @@ bot.onTextMessage(/./, (message, response) => {
                 const ppdk = ppdmgr.keyboard();
                 let msg = new TextMessage("Часто задаваемые вопросы о предпенсионном возрасте", ppdk);
                 response.send(msg);
-            }
             }else if (text === main_keyboard.MAIN_MENU) {
                 let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
                 response.send(msg);
