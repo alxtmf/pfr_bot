@@ -120,7 +120,7 @@ bot.onTextMessage(/./, (message, response) => {
                 let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
                 response.send(msg);
 
-            }else if (text.startsWith(main_keyboard.PRED_PENS_DOC)) {
+            }else if (text.startsWith(main_keyboard.PRED_PENS_PREFIX)) {
                 const ppdmgr = new PredPensionDocInfoManager();
                 const ppdInfo = ppdmgr.infoAsString(text);
                 let msg = new TextMessage(ppdInfo, main_keyboard.MAIN_KEYBOARD);
