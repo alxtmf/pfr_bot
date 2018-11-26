@@ -3,7 +3,7 @@
 const pension_doc = require ('./predpension_doc');
 const main_keyboard = require ('./main_keyboard');
 
-class PensionDocInfoManager {
+class PredPensionDocInfoManager {
 
     info(actionBoby){
         let f =  function() {
@@ -74,4 +74,4 @@ class PensionDocInfoManager {
     }
 }
 
-module.exports = PensionDocInfoManager;
+module.exports = PredPensionDocInfoManager;
