@@ -97,9 +97,14 @@ bot.onTextMessage(/./, (message, response) => {
                 let msg = new TextMessage("Узнайте, какие документы необходмы в различных жизненных ситуациях", pdk);
                 response.send(msg);
             }else if (text === main_keyboard.NEAREST_KS) {
-                    let msg = new TextMessage("Отправьте мне ваше местоположение и я покажу на карте ближайшую клиентскую службу");
-                    response.send(msg);
-
+                let msg = new TextMessage("Отправьте мне ваше местоположение и я покажу на карте ближайшую клиентскую службу");
+                response.send(msg);
+            }else if (text === main_keyboard.PRED_PENS_DOC) {
+                const ppdmgr = new PredPensionDocInfoManager();
+                const ppdk = ppdmgr.keyboard();
+                let msg = new TextMessage("Часто задаваемые вопросы о предпенсионном возрасте", ppdk);
+                response.send(msg);
+            }
             }else if (text === main_keyboard.MAIN_MENU) {
                 let msg = new TextMessage("Выберите действие", main_keyboard.MAIN_KEYBOARD);
                 response.send(msg);

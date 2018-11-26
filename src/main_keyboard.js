@@ -5,6 +5,7 @@ const KS_PREFIX = "KSSHI_";
 const PENSION_DOC_PREFIX = "PENDO_";
 const NEAREST_KS = "NEAREST_KS";
 const PRED_PENS_DOC = "PRED_PENS_DOC";
+const PRED_PENS_PREFIX = "PREDPE_";
 
 const MAIN_KEYBOARD = {
     Type: "keyboard",
@@ -51,3 +52,4 @@ module.exports.KS_PREFIX = KS_PREFIX;
 module.exports.PENSION_DOC_PREFIX = PENSION_DOC_PREFIX;
 module.exports.NEAREST_KS = NEAREST_KS;
 module.exports.PRED_PENS_DOC = PRED_PENS_DOC;
+module.exports.PRED_PENS_PREFIX = PRED_PENS_PREFIX;

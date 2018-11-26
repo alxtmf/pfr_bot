@@ -8,7 +8,7 @@ class PredPensionDocInfoManager {
     info(actionBoby){
         let f =  function() {
             const list = pension_doc.pensionDocs.infoMessageList.InfoMessage;
-            const code = actionBoby.replace(main_keyboard.PENSION_DOC_PREFIX, '').trim();
+            const code = actionBoby.replace(main_keyboard.PRED_PENS_PREFIX, '').trim();
 
             for (var index in list) {
                 if (list[index].Code === code) {
@@ -49,7 +49,7 @@ class PredPensionDocInfoManager {
                 BgColor: colors[index % colors.length],
                 Text: list[index].Name,
                 ActionType:"reply",
-                ActionBody: main_keyboard.PENSION_DOC_PREFIX + list[index].Code,
+                ActionBody: main_keyboard.PRED_PENS_PREFIX + list[index].Code,
                 TextSize: 'regular',
             };
             buttons.push(btn);
@@ -63,14 +63,14 @@ class PredPensionDocInfoManager {
             TextSize: 'regular',
         })
 
-        const KS_INFO_KEYBOARD = {
+        const PRED_PENS_KEYBOARD = {
             Type: "keyboard",
             Revision: 1,
             DefaultHeight: true,
             BgColor: '#F0FFFF',
             Buttons: buttons
         };
-        return KS_INFO_KEYBOARD;
+        return PRED_PENS_KEYBOARD;
     }
 }
 
