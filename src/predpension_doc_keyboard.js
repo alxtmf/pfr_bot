@@ -1,13 +1,13 @@
 
 
-const pension_doc = require ('./predpension_doc');
+const predpension_doc = require ('./predpension_doc');
 const main_keyboard = require ('./main_keyboard');
 
 class PredPensionDocInfoManager {
 
     info(actionBoby){
         let f =  function() {
-            const list = pension_doc.pensionDocs.infoMessageList.InfoMessage;
+            const list = predpension_doc.predPensionDocs.infoMessageList.InfoMessage;
             const code = actionBoby.replace(main_keyboard.PRED_PENS_PREFIX, '').trim();
 
             for (var index in list) {
@@ -32,7 +32,7 @@ class PredPensionDocInfoManager {
     }
 
     keyboard(){
-        const list = pension_doc.pensionDocs.infoMessageList.InfoMessage;
+        const list = predpension_doc.predPensionDocs.infoMessageList.InfoMessage;
 
         var buttons = [{
             BgColor: '#FFD700',
