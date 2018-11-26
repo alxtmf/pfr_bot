@@ -16,6 +16,7 @@ var request = require('request');
 const main_keyboard = require ('./main_keyboard');
 const SheduleInfoManager = require ('./shedule_keyboard');
 const PensionDocInfoManager = require ('./pension_doc_keyboard');
+const PredPensionDocInfoManager = require ('./predpension_doc_keyboard');
 
 function createLogger() {
     const logger = new winston.Logger({
@@ -113,6 +114,12 @@ bot.onTextMessage(/./, (message, response) => {
                 const pdmgr = new PensionDocInfoManager();
                 const pdInfo = pdmgr.infoAsString(text);
                 let msg = new TextMessage(pdInfo, main_keyboard.MAIN_KEYBOARD);
+                response.send(msg);
+
+            }else if (text.startsWith(main_keyboard.PRED_PENS_DOC)) {
+                const ppdmgr = new PredPensionDocInfoManager();
+                const ppdInfo = ppdmgr.infoAsString(text);
+                let msg = new TextMessage(ppdInfo, main_keyboard.MAIN_KEYBOARD);
                 response.send(msg);
 
             } else if (text === 'юзеры') {

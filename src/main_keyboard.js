@@ -4,6 +4,7 @@ const MAIN_MENU = "MAIN_KEYBOARD";
 const KS_PREFIX = "KSSHI_";
 const PENSION_DOC_PREFIX = "PENDO_";
 const NEAREST_KS = "NEAREST_KS";
+const PRED_PENS_DOC = "PRED_PENS_DOC";
 
 const MAIN_KEYBOARD = {
     Type: "keyboard",
@@ -32,6 +33,13 @@ const MAIN_KEYBOARD = {
             ActionBody: PENS_DOC,
             TextSize: 'regular'
         },
+        {
+            BgColor: '#3CBDBF',
+            Text: 'Предпенсионный возраст',
+            ActionType:"reply",
+            ActionBody: PRED_PENS_DOC,
+            TextSize: 'regular'
+        }
     ]
 };
 
@@ -42,3 +50,4 @@ module.exports.MAIN_MENU = MAIN_MENU;
 module.exports.KS_PREFIX = KS_PREFIX;
 module.exports.PENSION_DOC_PREFIX = PENSION_DOC_PREFIX;
 module.exports.NEAREST_KS = NEAREST_KS;
+module.exports.PRED_PENS_DOC = PRED_PENS_DOC;
